@@ -9,6 +9,10 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    env:
+      SOLUTION_FILE: ./src/DiD.IdefixGlobal.sln
+      PROJECT_FILE: ./src/DiD.IdefixGlobal/DiD.IdefixGlobal.csproj
+
     steps:
     - uses: actions/checkout@v2
     - name: Setup .NET
@@ -16,13 +20,13 @@ jobs:
       with:
         dotnet-version: 5.0.x
     - name: Restore dependencies
-      run: dotnet restore
+      run: dotnet restore ${{ env.SOLUTION_FILE }}
     - name: Build
-      run: dotnet build --configuration Release --no-restore
+      run: dotnet build ${{ env.SOLUTION_FILE }} --configuration Release --no-restore
     - name: Publish
       uses: brandedoutcast/publish-nuget@v2.5.5
       with:
-        PROJECT_FILE_PATH: src/DiD.IdefixGlobal/DiD.IdefixGlobal.csproj
+        PROJECT_FILE_PATH: ${{ env.PROJECT_FILE }}
         VERSION_REGEX: '^\s*<PackageVersion>(.*)<\/PackageVersion>\s*$'
         TAG_FORMAT: '*'
         NUGET_KEY: ${{secrets.NUGET_API_KEY}}
