@@ -21,8 +21,8 @@ jobs:
       run: dotnet build --configuration Release --no-restore
     - name: Publish
       uses: brandedoutcast/publish-nuget@v2.5.5
-	  with:
-		PROJECT_FILE_PATH: src/DiD.IdefixGlobal/DiD.IdefixGlobal.csproj
-		VERSION_REGEX: '^\s*<PackageVersion>(.*)<\/PackageVersion>\s*$'
+      with:
+        PROJECT_FILE_PATH: src/DiD.IdefixGlobal/DiD.IdefixGlobal.csproj
+        VERSION_REGEX: '^\s*<PackageVersion>(.*)<\/PackageVersion>\s*$'
         TAG_FORMAT: '*'
         NUGET_KEY: ${{secrets.NUGET_API_KEY}}
