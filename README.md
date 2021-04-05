@@ -1,4 +1,4 @@
-# DiD.IdefixGlobal
+# DiD.Idefix
 This is me playing around with .net global tools and publishing it directly via github actions. 
 
 The tool will support 2 commands:
