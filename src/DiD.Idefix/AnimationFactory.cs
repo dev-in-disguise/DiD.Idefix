@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace DiD.IdefixGlobal
+namespace DiD.Idefix
 {
     internal static class AnimationFactory
     {

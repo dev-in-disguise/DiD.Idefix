@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace DiD.IdefixGlobal
+﻿namespace DiD.Idefix
 {
     class Program
     {
