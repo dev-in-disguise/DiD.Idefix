@@ -10,8 +10,8 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      SOLUTION_FILE: ./src/DiD.IdefixGlobal.sln
-      PROJECT_FILE: ./src/DiD.IdefixGlobal/DiD.IdefixGlobal.csproj
+      SOLUTION_FILE: ./src/DiD.Idefix.sln
+      PROJECT_FILE: ./src/DiD.Idefix/DiD.Idefix.csproj
 
     steps:
     - uses: actions/checkout@v2
