@@ -6,11 +6,22 @@
 	<PackAsTool>true</PackAsTool>
 	<ToolCommandName>idefix</ToolCommandName>
 	<PackageOutputPath>./nupkg</PackageOutputPath>
-	<PackageVersion>1.0.0</PackageVersion>
+	<PackageVersion>1.1.0</PackageVersion>
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Resources\" />
+    <Compile Update="Resources\IdefixResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>IdefixResources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Resources\IdefixResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>IdefixResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>

@@ -1,5 +1,5 @@
 ﻿using System;
-using System.IO;
+using DiD.Idefix.Resources;
 
 namespace DiD.Idefix
 {
@@ -7,12 +7,8 @@ namespace DiD.Idefix
     {
         internal static void ShowIdefix()
         {
-            var idefixAscii = File.ReadAllLines(@".\Resources\Idefix.txt");
-
-            foreach (var asciiLine in idefixAscii)
-            {
-                Console.WriteLine(asciiLine);
-            }
+            string idefix = IdefixResources.Idefix;
+            Console.WriteLine(idefix);
         }
     }
 }
