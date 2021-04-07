@@ -34,7 +34,7 @@ jobs:
       with:
         proj-path: ${{ env.PROJECT_FILE }}
     - name: Fail not updated version
-      if: ${{ steps.get-latesttag.outputs.tag }} == ${{ steps.get-packageversion.outputs.package-version }}
+      if: ${{ steps.get-latesttag.outputs.tag == steps.get-packageversion.outputs.package-version }}
       run: |
         echo "PackageVersion in csproj matches latest git tag version. Please update PackageVersion."
         echo "Latest tag: ${{ steps.get-latesttag.outputs.tag }}"
