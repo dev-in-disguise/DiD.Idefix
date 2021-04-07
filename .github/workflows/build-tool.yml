@@ -23,6 +23,8 @@ jobs:
       run: dotnet restore ${{ env.SOLUTION_FILE }}
     - name: Build
       run: dotnet build ${{ env.SOLUTION_FILE }} --configuration Release --no-restore
+    - name: Fetch tags
+      run: git fetch --tags
     - name: Get latest tag
       id: get-latesttag
       uses: WyriHaximus/github-action-get-previous-tag@v1
