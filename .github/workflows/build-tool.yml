@@ -12,7 +12,6 @@ jobs:
     env:
       SOLUTION_FILE: ./src/DiD.Idefix.sln
       PROJECT_FILE: ./src/DiD.Idefix/DiD.Idefix.csproj
-      LATEST_VERSION: 0
 
     steps:
     - uses: actions/checkout@v2
@@ -24,15 +23,16 @@ jobs:
       run: dotnet restore ${{ env.SOLUTION_FILE }}
     - name: Build
       run: dotnet build ${{ env.SOLUTION_FILE }} --configuration Release --no-restore
-    - name: Get latest tag version
-      run: ${{ env.LATEST_VERSION }} = git describe --tags --abbrev=0
+    - name: Get latest tag
+      id: get-latesttag
+      uses: WyriHaximus/github-action-get-previous-tag@v1
     - name: Get PackageVersion of csproj
-      uses: naminodarie/get-net-sdk-project-versions-action@v1
       id: get-packageversion
+      uses: naminodarie/get-net-sdk-project-versions-action@v1
       with:
         proj-path: ${{ env.PROJECT_FILE }}
     - name: Fail not updated version
-      if: ${{ env.LATEST_VERSION }} == ${{ steps.get-packageversion.outputs.package-version }}
+      if: ${{ steps.get-latesttag.outputs.tag }} == ${{ steps.get-packageversion.outputs.package-version }}
       run: |
         echo "PackageVersion in csproj matches latest git tag version. Please update PackageVersion."
         exit 1
