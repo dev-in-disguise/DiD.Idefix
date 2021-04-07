@@ -37,4 +37,6 @@ jobs:
       if: ${{ steps.get-latesttag.outputs.tag }} == ${{ steps.get-packageversion.outputs.package-version }}
       run: |
         echo "PackageVersion in csproj matches latest git tag version. Please update PackageVersion."
+        echo "Latest tag: ${{ steps.get-latesttag.outputs.tag }}"
+        echo "PackageVersion: ${{ steps.get-packageversion.outputs.package-version }}"
         exit 1
