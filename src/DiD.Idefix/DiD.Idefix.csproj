@@ -6,7 +6,7 @@
 	<PackAsTool>true</PackAsTool>
 	<ToolCommandName>idefix</ToolCommandName>
 	<PackageOutputPath>./nupkg</PackageOutputPath>
-	<PackageVersion>1.1.0</PackageVersion>
+	<PackageVersion>1.2.0</PackageVersion>
   </PropertyGroup>
 
   <ItemGroup>
