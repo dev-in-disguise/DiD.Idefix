@@ -32,4 +32,7 @@ jobs:
         TAG_FORMAT: '*'
         NUGET_KEY: ${{secrets.NUGET_API_KEY}}
     - name: Publish to github packages
-      run: dotnet nuget push ${{ steps.publish-nuget-org.outputs.PACKAGE_PATH }} --api-key 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 --source "github" 
+      run: |
+        echo "${{ steps.publish-nuget-org.outputs.PACKAGE_PATH }}"
+        echo "${{ steps.publish-nuget-org.outputs.PACKAGE_NAME }}"
+        dotnet nuget push ${{ steps.publish-nuget-org.outputs.PACKAGE_PATH }} --api-key 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 --source "github" 
