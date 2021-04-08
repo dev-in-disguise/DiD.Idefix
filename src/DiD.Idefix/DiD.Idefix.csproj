@@ -6,7 +6,7 @@
 	<PackAsTool>true</PackAsTool>
 	<ToolCommandName>idefix</ToolCommandName>
 	<PackageOutputPath>./nupkg</PackageOutputPath>
-	<PackageVersion>1.3.0</PackageVersion>
+	<PackageVersion>1.4.0</PackageVersion>
 	<Authors>dev-in-disguise</Authors>
 	<Description>dotnet global tool that prints out the character Idefix® as an ascii art.</Description>
 	<RepositoryUrl>https://github.com/dev-in-disguise/DiD.Idefix.git</RepositoryUrl>
