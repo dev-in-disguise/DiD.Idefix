@@ -33,5 +33,8 @@ jobs:
         NUGET_KEY: ${{secrets.NUGET_API_KEY}}
     - name: Publish to github packages
       run: |
-        echo "${{ steps.publish-nuget-org.outputs[*] }}"
+        for output in ${{ steps.publish-nuget-org.outputs[*] }}
+        do
+          echo output
+        done
         dotnet nuget push ${{ steps.publish-nuget-org.outputs.PACKAGE_PATH }} --api-key "${{ secrets.GH_PACKAGES_TOKEN }}" --source "github" 
