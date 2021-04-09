@@ -1,24 +1,27 @@
-﻿using System;
-using System.Linq;
+﻿using System.CommandLine;
+using System.CommandLine.Builder;
+using System.CommandLine.Invocation;
+using System.Threading.Tasks;
+using System.CommandLine.Parsing;
+using DiD.Idefix.Extensions;
 
 namespace DiD.Idefix
 {
     class Program
     {
-        static void Main(string[] args)
+        static Task<int> Main(string[] args) 
+            => BuildCommandLine()
+                .ConfigureIdefixCommands()
+                .UseDefaults()
+                .Build()
+                .InvokeAsync(args);
+        private static CommandLineBuilder BuildCommandLine()
         {
-            if (!args.Any())
-            {
-                AnimationFactory.ShowIdefix();
-                return;
-            }
+            RootCommand rootCommand = new();
+            rootCommand.Description = "Shows Idefix as Ascii art";
 
-            if(args.Length > 1)
-            {
-                Console.WriteLine("Supported idefix commands: ");
-                Console.WriteLine(" - idefix");
-                Console.WriteLine(" - idefix wiggle");
-            }
+            rootCommand.Handler = CommandHandler.Create(async ()=> await AnimationFactory.ShowIdefixAsync()); 
+            return new CommandLineBuilder(rootCommand);
         }
     }
 }
