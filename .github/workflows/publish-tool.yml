@@ -35,6 +35,6 @@ jobs:
       run: |
         for output in ${{ steps.publish-nuget-org.outputs[*] }}
         do
-          echo output
+          echo $output
         done
         dotnet nuget push ${{ steps.publish-nuget-org.outputs.PACKAGE_PATH }} --api-key "${{ secrets.GH_PACKAGES_TOKEN }}" --source "github" 
