@@ -1,4 +1,4 @@
-name: Publish to nuget.org
+name: Publish tool
 
 on:
   push:
@@ -21,8 +21,13 @@ jobs:
         dotnet-version: 5.0.x
     - name: Restore dependencies
       run: dotnet restore ${{ env.SOLUTION_FILE }}
+    - name: Get PackageVersion of csproj
+      id: get-packageversion
+      uses: naminodarie/get-net-sdk-project-versions-action@v1
+      with:
+        proj-path: ${{ env.PROJECT_FILE }}
     - name: Build
-      run: dotnet build ${{ env.SOLUTION_FILE }} --configuration Release --no-restore
+      run: dotnet build ${{ env.SOLUTION_FILE }} --configuration Release --no-restore /p:AssemblyVersion={{ steps.get-packageversion.outputs.package-version }}
     - name: Publish to nuget.org
       id: publish-nuget-org
       uses: brandedoutcast/publish-nuget@v2.5.5

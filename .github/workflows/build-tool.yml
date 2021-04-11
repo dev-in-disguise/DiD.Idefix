@@ -1,4 +1,4 @@
-name: Build feature branch
+name: Build feature branch on Pull Request
 
 on:
   pull_request:
