@@ -27,7 +27,7 @@ jobs:
       with:
         proj-path: ${{ env.PROJECT_FILE }}
     - name: Build
-      run: dotnet build ${{ env.SOLUTION_FILE }} --configuration Release --no-restore /p:AssemblyVersion={{ steps.get-packageversion.outputs.package-version }}
+      run: dotnet build ${{ env.SOLUTION_FILE }} --configuration Release --no-restore /p:AssemblyVersion=${{ steps.get-packageversion.outputs.package-version }}
     - name: Publish to nuget.org
       id: publish-nuget-org
       uses: brandedoutcast/publish-nuget@v2.5.5
