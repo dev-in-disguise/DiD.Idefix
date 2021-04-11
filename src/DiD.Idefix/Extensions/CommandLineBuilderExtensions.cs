@@ -1,14 +1,19 @@
 using System.CommandLine.Builder;
+using DiD.Idefix.Animations;
 
 namespace DiD.Idefix.Extensions
 {
     internal static class CommandLineBuilderExtensions
     {
-        internal static CommandLineBuilder ConfigureIdefixCommands(this CommandLineBuilder builder)
+        internal static CommandLineBuilder UseCommandHandlerInjection(this CommandLineBuilder builder)
         {
-            builder.Command.AddWiggleCommand();
-            builder.Command.AddOwnerCommand();
-            builder.Command.AddCreatorCommand();
+            builder.UseMiddleware(async (context, next) =>
+            {
+                // register services here
+                context.BindingContext.AddService<IAnimationFactory>(_ => new AnimationFactory());
+
+                await next(context);
+            });
 
             return builder;
         }

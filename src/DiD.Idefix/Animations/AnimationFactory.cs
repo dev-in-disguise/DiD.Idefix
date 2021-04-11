@@ -3,17 +3,17 @@ using System.Threading;
 using System.Threading.Tasks;
 using DiD.Idefix.Resources;
 
-namespace DiD.Idefix
+namespace DiD.Idefix.Animations
 {
-    internal static class AnimationFactory
+    internal class AnimationFactory : IAnimationFactory
     {
-        internal static Task ShowIdefixAsync()
+        public Task ShowIdefixAsync()
         {
             string idefix = IdefixResources.Idefix;
             return Console.Out.WriteLineAsync(idefix);
         }
 
-        internal static async Task ShowWigglingIdefixAsync()
+        public async Task ShowWigglingIdefixAsync()
         {
             await ShowIdefixAsync();
             var tailLeft = IdefixResources.IdefixTailLeft;
@@ -21,7 +21,7 @@ namespace DiD.Idefix
             bool isTailRight = true;
 
             CancellationTokenSource cts = new CancellationTokenSource(2500);
-            
+
             try
             {
                 while (!cts.Token.IsCancellationRequested)
@@ -34,7 +34,7 @@ namespace DiD.Idefix
                     await Task.Delay(250, cts.Token);
                 }
             }
-            catch(TaskCanceledException){}
+            catch (TaskCanceledException) { }
         }
     }
 }
