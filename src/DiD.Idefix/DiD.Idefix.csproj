@@ -8,7 +8,7 @@
     <PackAsTool>true</PackAsTool>
     <ToolCommandName>idefix</ToolCommandName>
     <PackageOutputPath>./nupkg</PackageOutputPath>
-    <PackageVersion>3.0.1</PackageVersion>
+    <PackageVersion>3.0.2</PackageVersion>
   </PropertyGroup>
 
   <!-- Contains the metadata of the project -->

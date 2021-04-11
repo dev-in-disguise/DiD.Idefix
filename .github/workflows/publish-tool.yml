@@ -33,7 +33,7 @@ jobs:
     - name: Publish to nuget.org
       run: dotnet nuget push *.nupkg -s "https://api.nuget.org/v3/index.json" -k ${{ secrets.NUGET_API_KEY }} --skip-duplicate
     - name: Publish to github packages
-      run: dotnet nuget push *.nupkg --api-key "${{ secrets.GH_PACKAGES_TOKEN }}" --source "https://nuget.pkg.github.com/dev-in-disguise/index.json" 
+      run: dotnet nuget push *.nupkg -s "https://nuget.pkg.github.com/dev-in-disguise/index.json" -k "${{ secrets.GH_PACKAGES_TOKEN }}" --skip-duplicate
     - name: Apply git tag
       run: |
         git tag ${{ steps.get-packageversion.outputs.package-version }}
