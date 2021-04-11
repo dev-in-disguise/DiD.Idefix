@@ -27,14 +27,14 @@ jobs:
       with:
         proj-path: ${{ env.PROJECT_FILE }}
     - name: Build
-      run: dotnet build ${{ env.SOLUTION_FILE }} --configuration Release --no-restore /p:AssemblyVersion=${{ steps.get-packageversion.outputs.package-version }}
+      run: dotnet build ${{ env.SOLUTION_FILE }} --configuration Release --no-restore /p:Version=${{ steps.get-packageversion.outputs.package-version }}
+    - name: Pack
+      run: dotnet pack --no-build -c Release ${{ env.PROJECT_FILE }} -o
     - name: Publish to nuget.org
-      id: publish-nuget-org
-      uses: brandedoutcast/publish-nuget@v2.5.5
-      with:
-        PROJECT_FILE_PATH: ${{ env.PROJECT_FILE }}
-        VERSION_REGEX: '^\s*<PackageVersion>(.*)<\/PackageVersion>\s*$'
-        TAG_FORMAT: '*'
-        NUGET_KEY: ${{secrets.NUGET_API_KEY}}
+      run: dotnet nuget push *.nupkg -s "https://api.nuget.org/v3/index.json" -k ${{ secrets.NUGET_API_KEY }} --skip-duplicate
     - name: Publish to github packages
-      run: dotnet nuget push "${{ steps.publish-nuget-org.outputs.PACKAGE_PATH }}" --api-key "${{ secrets.GH_PACKAGES_TOKEN }}" --source "https://nuget.pkg.github.com/dev-in-disguise/index.json" 
+      run: dotnet nuget push *.nupkg --api-key "${{ secrets.GH_PACKAGES_TOKEN }}" --source "https://nuget.pkg.github.com/dev-in-disguise/index.json" 
+    - name: Apply git tag
+      run: |
+        git tag ${{ steps.get-packageversion.outputs.package-version }}
+        git push origin ${{ steps.get-packageversion.outputs.package-version }}
