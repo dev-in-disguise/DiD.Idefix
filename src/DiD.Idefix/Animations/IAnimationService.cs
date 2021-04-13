@@ -2,7 +2,7 @@ using System.Threading.Tasks;
 
 namespace DiD.Idefix.Animations
 {
-    internal interface IAnimationFactory
+    internal interface IAnimationService
     {
         Task ShowIdefixAsync();
         Task ShowWigglingIdefixAsync();

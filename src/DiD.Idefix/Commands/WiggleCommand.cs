@@ -8,7 +8,7 @@ namespace DiD.Idefix.Commands
     {
         public WiggleCommand() : base("wiggle", "Shows Ascii art of Idefix wiggling his tail.")
         {
-            this.Handler = CommandHandler.Create(async (IAnimationFactory animations) => await animations.ShowWigglingIdefixAsync());
+            this.Handler = CommandHandler.Create(async (IAnimationService animations) => await animations.ShowWigglingIdefixAsync());
         }
     }
 }

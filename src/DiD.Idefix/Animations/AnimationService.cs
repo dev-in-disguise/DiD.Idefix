@@ -5,7 +5,7 @@ using DiD.Idefix.Resources;
 
 namespace DiD.Idefix.Animations
 {
-    internal class AnimationFactory : IAnimationFactory
+    internal class AnimationService : IAnimationService
     {
         public Task ShowIdefixAsync()
         {
@@ -15,6 +15,7 @@ namespace DiD.Idefix.Animations
 
         public async Task ShowWigglingIdefixAsync()
         {
+            Console.Clear();
             await ShowIdefixAsync();
             var tailLeft = IdefixResources.IdefixTailLeft;
             var tailRight = IdefixResources.IdefixTailRight;

@@ -12,7 +12,7 @@ namespace DiD.Idefix.Commands
         public IdefixRootCommand()
         {
             this.Description = "Shows Idefix as Ascii art";
-            this.Handler = CommandHandler.Create(async (IAnimationFactory animations) => await animations.ShowIdefixAsync());
+            this.Handler = CommandHandler.Create(async (IAnimationService animations) => await animations.ShowIdefixAsync());
             this.AddChildCommands(ChildCommands());
         }
 

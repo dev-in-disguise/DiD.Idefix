@@ -10,7 +10,7 @@ namespace DiD.Idefix.Extensions
             builder.UseMiddleware(async (context, next) =>
             {
                 // register services here
-                context.BindingContext.AddService<IAnimationFactory>(_ => new AnimationFactory());
+                context.BindingContext.AddService<IAnimationService>(_ => new AnimationService());
 
                 await next(context);
             });
