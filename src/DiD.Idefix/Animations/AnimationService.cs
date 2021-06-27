@@ -15,10 +15,11 @@ namespace DiD.Idefix.Animations
 
         public async Task ShowWigglingIdefixAsync()
         {
+            Console.CursorVisible = false;
             Console.Clear();
             await ShowIdefixAsync();
-            var tailLeft = IdefixResources.IdefixTailLeft;
-            var tailRight = IdefixResources.IdefixTailRight;
+            var tailLeft = IdefixResources.IdefixTailLeft.Split(Environment.NewLine);
+            var tailRight = IdefixResources.IdefixTailRight.Split(Environment.NewLine);
             bool isTailRight = true;
 
             CancellationTokenSource cts = new CancellationTokenSource(2500);
@@ -28,14 +29,20 @@ namespace DiD.Idefix.Animations
                 while (!cts.Token.IsCancellationRequested)
                 {
                     var tailToUpdate = isTailRight ? tailLeft : tailRight;
-                    Console.Clear();
-                    await Console.Out.WriteLineAsync(tailToUpdate);
+
+                    for (int i = 0; i < tailToUpdate.Length; i++)
+                    {
+                        Console.SetCursorPosition(0, 2 + i);
+                        await Console.Out.WriteAsync(tailToUpdate[i]);
+                    }
 
                     isTailRight = !isTailRight;
                     await Task.Delay(250, cts.Token);
                 }
             }
             catch (TaskCanceledException) { }
+
+            Console.CursorVisible = true;
         }
     }
 }
