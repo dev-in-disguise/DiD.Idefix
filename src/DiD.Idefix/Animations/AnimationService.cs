@@ -44,8 +44,8 @@ namespace DiD.Idefix.Animations
             }
             catch (TaskCanceledException) { }
 
-            Console.CursorVisible = true;
             Console.SetCursorPosition(0, previousRow);
+            Console.CursorVisible = true;
         }
     }
 }
