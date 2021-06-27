@@ -18,6 +18,8 @@ namespace DiD.Idefix.Animations
             Console.CursorVisible = false;
             Console.Clear();
             await ShowIdefixAsync();
+
+            var previousRow = Console.CursorTop;
             var tailLeft = IdefixResources.IdefixTailLeft.Split(Environment.NewLine);
             var tailRight = IdefixResources.IdefixTailRight.Split(Environment.NewLine);
             bool isTailRight = true;
@@ -43,6 +45,7 @@ namespace DiD.Idefix.Animations
             catch (TaskCanceledException) { }
 
             Console.CursorVisible = true;
+            Console.SetCursorPosition(0, previousRow);
         }
     }
 }
